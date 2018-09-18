@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- CSS -->
+<!--     <link href="static/style.css" rel="stylesheet" type="text/css" /> -->
+
+    <!-- LINKS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://selectize.github.io/selectize.js/css/selectize.bootstrap3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="https://selectize.github.io/selectize.js/js/selectize.js"></script>
+    <script type="text/javascript" src="scripts/populate_dropdown_from_remote_json.js"></script>
+
+    <script type="text/javascript">
+        // Check the API key input
+        function keySubmit (key_value) {
+            var ensure_user = document.getElementById("ensure_user_on_api_key")
+            // Default value still there or nothing entered 
+            if (key_value == "No key given." | !key_value) {
+                return;
+            // nothing entered
+            } else {
+                console.log("document.getElementById(\"api_key_input\").value: " + document.getElementById("api_key_input").value);
+                ensure_user.textContent = "Key stored: " + key_value;
+            }
+        }
+    </script>
+
+    <title>
+        INDRA DepMap Explainer
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container">
+    <div class="jumbotron">
+        <h1>INDRA DepMap Explainer</h1>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>API key</h4></div>
+        <form name="apiKeyForm" action="javascript:keySubmit(api_key_input.value)">
+            If no key is provided, evidence text output might be limited. Links to source material will always be provided.<br>
+            <input type="text" name="api_key" id="api_key_input" placeholder="Enter key here..." style="width: 360px;">
+            <input type="submit" name="store_button" value="submit key">
+            <div id="ensure_user_on_api_key">No key given.</div>
+        </form>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3>Gene Selection</h3></div>
+        <p>The first dropdown will access a searchable menu of genes involved in CRISPR screens of cancer cell lines found at <a href="https://depmap.org/portal/" title="depmap.org at the Broad Institute">depmap.org</a>. The second dropdown will load once the first gene is selcted and will show the genes correlated with the first that have some explanation found using INDRA.<br><br><i>NOTE: Complexes are treated as undirected connections (i.e. there is no subject and object) and may appear in the output for intermediary connections of the type A-X-B.</i></p>
+        <div class="dropdown" style="width: 360px; top: 36px; left: 0px; visibility: visible;">
+        <div class="control-group">
+            <label for="select_first_gene"></label>
+            <select id="select_first_gene" class="demo-default" placeholder="Select a gene..."></select>
+        </div>
+        </div>
+
+        <div class="dropdown" style="width: 360px; top: 36px; left: 0px; visibility: visible;">
+        <div class="control-group">
+            <label for="select_second_gene"></label>
+                <select id="select_second_gene" class="demo-default" placeholder="Select a gene..."></select>
+            </div>
+        </div>
+        
+        <div id="output_A_B">
+            <h4>Selection</h4>
+            <div id="my_outputA">Gene A:</div>
+            <div id="my_outputB">Gene B:</div>
+            <h4 id="show_correlation">Link to depmap plot for geneA vs geneB (<i>correlation</i>)</h4>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 id="explanations" class="panel-title">Explanations</h3>
+        </div>
+            <div class="panel-group">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseAcB">
+                            Complex <div id="A_complex" style="display:inline-block;">A</div> <div id="B_complex" style="display:inline-block;">B</div>
+                           <span id="collapseAcB_ev_count" class="badge badge-default float-right" style="background-color:#6E6E6E;">Statements: 0</span>
+                            <div id="AB_output_complex"></div>
+                        </a>
+                    </h4>
+                    </div>
+                    <div id="collapseAcB" class="panel-collapse collapse">
+                        <div id="expl_A_complex_B">&nbsp;</div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseAB">
+                            <div id="A_AtoB" style="display:inline-block;">A</div> &rarr; <div id="B_AtoB" style="display:inline-block;">B</div>
+                            <span id="collapseAB_ev_count" class="badge badge-default float-right" style="background-color:#6E6E6E;">Statements: 0</span>
+                            <div id="AB_output_AB"></div>
+                        </a>
+                    </h4>
+
+                    </div>
+
+                    <div id="collapseAB" class="panel-collapse collapse">
+                        <div id="expl_A_to_B">&nbsp;</div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseBA">
+                            <div id="B_BtoA" style="display:inline-block;">B</div> &rarr; <div id="A_BtoA" style="display:inline-block;">A</div>
+                            <span id="collapseBA_ev_count" class="badge badge-default float-right" style="background-color:#6E6E6E;">Statements: 0</span>
+                            <div id="BA_output_BA"></div>
+                        </a>
+                    </h4>
+                    </div>
+                    <div id="collapseBA" class="panel-collapse collapse">
+                        <div id="expl_B_to_A">&nbsp;</div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseAXB">
+                            <div id="A_AXB" style="display:inline-block;">A</div> &rarr; <div id="X_AXB" style="display:inline-block;">X</div> &rarr; <div id="B_AXB" style="display:inline-block;">B</div>
+                            <span id="collapseAXB_ev_count" class="badge badge-default float-right" style="background-color:#6E6E6E;">X: 0</span>
+                        </a>
+                    </h4>
+                    </div>
+                    <div id="collapseAXB" class="panel-collapse collapse">
+                        <div id="expl_A_to_X_to_B">&nbsp;
+                            <div id="AXB_dropdown"></div>
+                            <div id="AX_output_AXB"></div>
+                            <div id="XB_output_AXB"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseBXA">
+                            <div id="B_BXA" style="display:inline-block;">B</div> &rarr; <div id="X_BXA" style="display:inline-block;">X</div> &rarr; <div id="A_BXA" style="display:inline-block;">A</div>
+                            <span id="collapseBXA_ev_count" class="badge badge-default float-right" style="background-color:#6E6E6E;">X: 0</span>
+                        </a>
+                    </h4>
+                    </div>
+                    <div id="collapseBXA" class="panel-collapse collapse">
+                        <div id="expl_B_to_X_to_A">&nbsp;
+                            <div id="BXA_dropdown"></div>
+                            <div id="BX_output_BXA"></div>
+                            <div id="XA_output_BXA"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse_st">
+                            Shared target (<div id="A_ABtoX" style="display:inline-block;">A</div> &rarr; <div id="X_ABtoX" style="display:inline-block;">X</div> &larr; <div id="B_ABtoX" style="display:inline-block;">B</div>)
+                            <span id="collapse_st_X_count" class="badge badge-default float-right" style="background-color:#6E6E6E;">X: 0</span>
+                        </a>
+                    </h4>
+                    </div>
+                    <div id="collapse_st" class="panel-collapse collapse">
+                        <div id="expl_x_is_downstream">&nbsp;
+                            <div id="ABtoX_dropdown"></div>
+                            <div id="AX_output_ABtoX"></div>
+                            <div id="XB_output_ABtoX"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse_sr">
+                            Shared regulator (<div id="A_XtoAB" style="display:inline-block;">A</div> &larr; <div id="X_XtoAB" style="display:inline-block;">X</div> &rarr; <div id="B_XtoAB" style="display:inline-block;">B</div>)
+                            <span id="collapse_sr_X_count" class="badge badge-default float-right" style="background-color:#6E6E6E;">X: 0</span>
+                        </a>
+                    </h4>
+                    </div>
+                    <div id="collapse_sr" class="panel-collapse collapse">
+                        <div id="expl_x_is_upstream">&nbsp;
+                            <div id="XtoAB_dropdown"></div>
+                            <div id="AX_output_XtoAB"></div>
+                            <div id="XB_output_XtoAB"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</div>
+</html>
