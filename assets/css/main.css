@@ -2167,19 +2167,19 @@ input, select, textarea {
 			}
 
 		.image.avatar {
-			border-radius: 100%;
+			border-radius: 5px;
 			overflow: visible;
 		}
 
 			.image.avatar img {
-				border-radius: 100%;
+				border-radius: 5px;
 				display: block;
 				width: 100%;
 			}
 
 		.image.main {
 			display: block;
-			height: 20em;
+			height: 10em;
 			border-radius: 0;
 		}
 
@@ -2936,7 +2936,7 @@ input, select, textarea {
 				}
 
 			.image.main {
-				height: 20em;
+				height: 10em;
 			}
 
 		/* Header */
@@ -3114,7 +3114,7 @@ input, select, textarea {
 			}
 
 			.image.main {
-				height: 12em;
+				height: 6em;
 			}
 
 		/* Section/Article */
@@ -3284,4 +3284,50 @@ input, select, textarea {
 				padding: 0;
 			}
 
+	}
+
+
+	#sidebar-logo img {
+	    width: 90%;
+	}
+
+	/* Team */
+
+
+
+	/* Three columns side by side */
+	.column {
+	    float: left;
+	    width: 33%;
+	    margin-bottom: 16px;
+	    padding: 0 px;
+	}
+
+	/* Display the columns below each other instead of side by side on small screens */
+	@media screen and (max-width: 650px) {
+	    .column {
+	        width: 80%;
+	        display: block;
+	    }
+	}
+
+	/* Add some shadows to create a card effect */
+	.card {
+	    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	}
+
+	/* Some left and right padding inside the container */
+	.containerx {
+	    padding: 0 16px;
+	}
+
+	/* Clear floats */
+	.containerx::after, .row::after {
+	    content: "";
+	    clear: both;
+	    display: table;
+	}
+
+	.title {
+	    color: grey;
 	}
