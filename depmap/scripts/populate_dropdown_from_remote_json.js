@@ -14,12 +14,138 @@ $(function(){
     var indra_english_asmb = "http://api.indra.bio:8000/assemblers/english";
     var pubmed_fetch = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi";
 
-    // set globally accessible variables
+    // "GLOBAL" VARIABLE SCOPE
     var old_geneA = "A"
     var geneA = "A"
     var old_geneB = "B"
     var geneB = "B"
     // var uuid_stmtjson_dict = {}; // used for buttons to be able to access resolved evidence etc
+
+    // OUTPUT POINTERS
+    // Names
+    // Complex
+    var Aname_complex = document.getElementById("A_complex");
+    var Bname_complex = document.getElementById("B_complex");
+    // AB
+    var Aname_AtoB = document.getElementById("A_AtoB");
+    var Bname_AtoB = document.getElementById("B_AtoB");
+    // BA
+    var Aname_BtoA = document.getElementById("A_BtoA");
+    var Bname_BtoA = document.getElementById("B_BtoA");
+    // AXB
+    var Aname_AXB = document.getElementById("A_AXB");
+    var Bname_AXB = document.getElementById("B_AXB");
+    // BXA
+    var Aname_BXA = document.getElementById("A_BXA");
+    var Bname_BXA = document.getElementById("B_BXA");
+    // ABx
+    var Aname_ABtoX = document.getElementById("A_ABtoX");
+    var Bname_ABtoX = document.getElementById("B_ABtoX");
+    // xAB
+    var Aname_A_XtoAB = document.getElementById("A_XtoAB");
+    var Bname_XtoAB = document.getElementById("B_XtoAB");
+
+    // Output areas
+    // Complex AB
+    var output_AcB = $("#expl_A_complex_B")[0];
+    var output_ABcomplex = $("#AB_output_complex")[0];
+    var AcB_ev_count = document.getElementById("collapseAcB_ev_count");
+    // AB
+    var output_AB = $("#expl_A_to_B")[0];
+    var output_AB_AB = $("#AB_output_AB")[0];
+    var AB_ev_count = document.getElementById("collapseAB_ev_count");
+
+    // BA
+    var output_BA = $("#expl_B_to_A")[0];
+    var output_BA_BA = $("#BA_output_BA")[0];
+    var BA_ev_count = document.getElementById("collapseBA_ev_count");
+
+    // AXB
+    var output_AXB = $("#expl_A_to_X_to_B")[0];
+    var AXB_dd_div = $("#AXB_dropdown")[0];
+    var output_AX_AXB = $("#AX_output_AXB")[0];
+    var output_XB_AXB = $("#XB_output_AXB")[0];
+    var AXB_ev_count = document.getElementById("collapseAXB_ev_count");
+
+    // BXA
+    var output_BXA = $("#expl_B_to_X_to_A")[0];
+    var BXA_dd_div = $("#BXA_dropdown")[0];
+    var output_BX_BXA = $("#BX_output_BXA")[0];
+    var output_XB_BXA = $("#XA_output_BXA")[0];
+    var BXA_ev_count = document.getElementById("collapseBXA_ev_count");
+
+    // ABx
+    var output_ABx = $('#expl_x_is_downstream')[0];
+    var ABtox_dd_div = $("#ABtoX_dropdown")[0];
+    var output_AX_ABtoX = $("#AX_output_ABtoX")[0];
+    var output_XB_ABtoX = $("#XB_output_ABtoX")[0];
+    var ABx_ev_count = document.getElementById("collapse_st_X_count");
+
+    // xAB
+    var output_xAB = $('#expl_x_is_upstream')[0];
+    var XtoAB_dd_div = $("#XtoAB_dropdown")[0];
+    var output_AX_XtoAB = $("#AX_output_XtoAB")[0];
+    var output_XB_XtoAB = $("#XB_output_XtoAB")[0];
+    var xAB_ev_count = document.getElementById("collapse_sr_X_count");
+
+    function resetNamesOutput() {
+        // console.log("Names reset");
+
+        // Names for "A" and "B"
+        Aname_complex.textContent = "A";
+        Bname_complex.textContent = "B";
+        Aname_AtoB.textContent = "A";
+        Bname_AtoB.textContent = "B";
+        Aname_BtoA.textContent = "A";
+        Bname_BtoA.textContent = "B";
+        Aname_AXB.textContent = "A";
+        Bname_AXB.textContent = "B";
+        Aname_BXA.textContent = "A";
+        Bname_BXA.textContent = "B";
+        Aname_ABtoX.textContent = "A";
+        Bname_ABtoX.textContent = "B";
+        Aname_A_XtoAB.textContent = "A";
+        Bname_XtoAB.textContent = "B";
+
+        // Clean up the output areas so old output doesn't stick around
+
+        // Complex AB
+        output_ABcomplex.innerHTML = null;
+        AcB_ev_count.textContent = "Statements: 0";
+        AcB_ev_count.style = "background-color:#6E6E6E;";
+        // A->B
+        output_AB_AB.innerHTML = null;
+        AB_ev_count.textContent = "Statements: 0";
+        AB_ev_count.style = "background-color:#6E6E6E;";
+        // B->A
+        output_BA_BA.innerHTML = null;
+        BA_ev_count.textContent = "Statements: 0";
+        BA_ev_count.style = "background-color:#6E6E6E;";
+        // A->X->B
+        AXB_dd_div.innerHTML = null;
+        output_AX_AXB.innerHTML = null;
+        output_XB_AXB.innerHTML = null;
+        AXB_ev_count.textContent = "X: 0";
+        AXB_ev_count.style = "background-color:#6E6E6E;";
+        // B->X->A
+        BXA_dd_div.innerHTML = null;
+        output_BX_BXA.innerHTML = null;
+        output_XB_BXA.innerHTML = null;
+        BXA_ev_count.textContent = "X: 0";
+        BXA_ev_count.style = "background-color:#6E6E6E;";
+        // A<-X->B
+        XtoAB_dd_div.innerHTML = null;
+        output_AX_XtoAB.innerHTML = null;
+        output_XB_XtoAB.innerHTML = null;
+        xAB_ev_count.textContent = "X: 0";
+        xAB_ev_count.style = "background-color:#6E6E6E;";
+        // A->X<-B
+        ABtox_dd_div.innerHTML = null;
+        output_AX_ABtoX.innerHTML = null;
+        output_XB_ABtoX.innerHTML = null;
+        ABx_ev_count.textContent = "X: 0";
+        ABx_ev_count.style = "background-color:#6E6E6E;";
+    }
 
     function allAreComplex(stmts) {
         for (hash of Object.keys(stmts)) {
@@ -44,8 +170,8 @@ $(function(){
     }
 
     function isInt(value) {
-      return !isNaN(value) && 
-             parseInt(Number(value)) == value && 
+      return !isNaN(value) &&
+             parseInt(Number(value)) == value &&
              !isNaN(parseInt(value, 10));
     }
 
@@ -149,7 +275,7 @@ $(function(){
         sortField: {
             // field: "second_item",
             field: "correlation",
-            direction: "asc"
+            direction: "desc"
         },
 
         onChange: function(value) {
@@ -160,16 +286,19 @@ $(function(){
 
             // Add an empty innerHTML object (otherwise it keeps appending to current HTML object)
             output_text.innerHTML = null;
-            
+
             // Build an element (here: "thingy") in the innerHTML that includes the selected value.
             thingy = document.createElement("span");
 
-            // Get the text from the selected item dropdown 
+            // Get the text from the selected item dropdown
             // thingy.textContent = "Subject: " + subj_input.options[subj_input.selectedIndex].text
             thingy.textContent = "Gene B: " + geneB;
 
             // Append the element to the div object
             output_text.appendChild(thingy)
+
+            // Reset Output and Names
+            resetNamesOutput();
 
             // SET ADDRESSES TO AWS S3 DATA
             // Query of evidence for A->B
@@ -181,7 +310,8 @@ $(function(){
             // https://s3.amazonaws.com/depmap-public/Q3_depmap_20180730_db_explained_improved/A1BG_is_subj.json
 
             let s3_prefix = "https://s3.amazonaws.com/depmap-public/";
-            let s3_subj_expl = "Q3_depmap_20180730_db_explained_improved/";
+            // let s3_subj_expl = "Q3_depmap_20180730_db_explained_improved/";
+            let s3_subj_expl = "pre_release_Q3_depmap_20180730_db_explained_improved/";
             let s3_indra_db = "indra_db_20180730_hash_json/"; // INDRA DB LOOKUP
             let s3_correlations = "correlation_pairs_above_03/correlates_with_";
 
@@ -235,8 +365,8 @@ $(function(){
             // To be used so we can query common up/downstream on B-X-A when A->B gives back a result but not B->A;
             // Should also use it for avoiding double output.
             var AcB_d_output = false
-            var AB_im_output = false
-            // var BA_im_output = false
+            var AB_st_output = false
+            var AB_sr_output = false
 
             // Query and output all subj:A -> obj:B
             var geneA_is_subj_promise = $.ajax({
@@ -246,17 +376,17 @@ $(function(){
 
                     // Should return a dict of the format below
                     connection_type_list = res[obj]
-                    
+
                     // json Return format:
                     // {"CHEK1":
                     //          {'directed': [["Phosphorylation", 17052011326019041], ["Phosphorylation", -32662422560218481],
                     //                        ["Dephosphorylation", -750973640471511], ["Activation", 30186062639888508],
                     //                        ["Inhibition", 20888016729018787], ["Activation", -8364720323695997]],
-                    //           'undirected': ["Complex", 35575713738557636], 
+                    //           'undirected': ["Complex", 35575713738557636],
                     //           'x_is_intermediary': [X],
                     //           'x_is_downstream': [X],
                     //           'x_is_upstream': [X]}}
-                    //           
+                    //
                     // access like:
                     // responseJSON["HGNC_id"][n][0/1]
                     // where n = number of interaction types (7 in above example) and [0/1] will give
@@ -264,50 +394,30 @@ $(function(){
 
                     // OUTPUT EXPLANATIONS
 
-                    // if connection undirected
-                    if (connection_type_list.undirected.length > 0) {
-                        var debug_string = 'output_AcB' // Kept for now in anticipation of future debugging needs
-                        // console.log(debug_string)
+                    // if connection undirected and not already printed
+                    if (!AcB_d_output) {
+                        if (connection_type_list.undirected.length > 0) {
+                            var debug_string = 'output_AcB 1' // Kept for now in anticipation of future debugging needs
 
-                        // Flag found so we don't make same call again for B->A
-                        AcB_d_output = true
+                            // Flag found so we don't make same call again for B->A
+                            AcB_d_output = true
 
-                        // Set names COMPLEX
-                        let Aname_complex = document.getElementById("A_complex");
-                        Aname_complex.textContent = geneA;
-                        let Bname_complex = document.getElementById("B_complex");
-                        Bname_complex.textContent = geneB;
+                            // Set names COMPLEX
+                            Aname_complex.textContent = geneA;
+                            Bname_complex.textContent = geneB;
 
-                        // Reference and initialize the output pointer
-                        var output_AcB = $("#expl_A_complex_B")[0];
-                        var output_ABcomplex = $("#AB_output_complex")[0];
-                        output_ABcomplex.innerHTML = null;  
-
-                        // Get reference to the text badge so we can output evidence count
-                        var AcB_ev_count = document.getElementById("collapseAcB_ev_count");
-
-                        // output_directs(output_pointer, source_output_pointer, ev_counter_pointer, type_hash_array, subj, obj, debug_string)
-                        output_directs(output_AcB, output_ABcomplex, AcB_ev_count, connection_type_list.undirected, geneA, geneB, debug_string);
+                            // output_directs(output_pointer, source_output_pointer, ev_counter_pointer, type_hash_array, subj, obj, debug_string)
+                            output_directs(output_AcB, output_ABcomplex, AcB_ev_count, connection_type_list.undirected, geneA, geneB, debug_string);
+                        }
                     }
 
                     // if connection directed
                     if (connection_type_list.directed.length > 0) {
                         var debug_string = 'output_AB'
-                        // console.log(debug_string)
 
                         // Set names DIRECTed
-                        let Aname_AtoB = document.getElementById("A_AtoB")
-                        Aname_AtoB.textContent = geneA
-                        let Bname_AtoB = document.getElementById("B_AtoB");
+                        Aname_AtoB.textContent = geneA;
                         Bname_AtoB.textContent = geneB;
-
-                        // Reference and initialize the output pointer
-                        var output_AB = $("#expl_A_to_B")[0];
-                        var output_AB_AB = $("#AB_output_AB")[0];
-                        output_AB_AB.innerHTML = null;
-
-                        // Get reference to the text badge so we can output evidence count
-                        var AB_ev_count = document.getElementById("collapseAB_ev_count");
 
                         // output_directs(output_pointer, source_output_pointer, ev_counter_pointer, type_hash_array, subj, obj, debug_string)
                         output_directs(output_AB, output_AB_AB, AB_ev_count, connection_type_list.directed, geneA, geneB, debug_string);
@@ -316,100 +426,56 @@ $(function(){
                     // 'x_is_intermediary'; This is for A->X->B
                     if (connection_type_list.x_is_intermediary.length > 0) {
                         var debug_string = 'output_AXB'
-                        // console.log(debug_string)
 
                         // Set names
-                        let Aname_AXB = document.getElementById("A_AXB")
-                        Aname_AXB.textContent = geneA
-                        let Bname_AXB = document.getElementById("B_AXB")
+                        Aname_AXB.textContent = geneA;
                         Bname_AXB.textContent = geneB;
-
-                        // Get pointers
-                        // Full box
-                        var output_AXB = $("#expl_A_to_X_to_B")[0];
-                        // x dropdown
-                        var AXB_dd_div = $("#AXB_dropdown")[0];
-                        AXB_dd_div.innerHTML = null;
-                        // AX interactions
-                        var output_AX_AXB = $("#AX_output_AXB")[0];
-                        output_AX_AXB.innerHTML = null;
-                        // XB interactions
-                        var output_XB_AXB = $("#XB_output_AXB")[0];
-                        output_XB_AXB.innerHTML = null;
-                        // Get pointer to evidence counter
-                        var AXB_ev_count = document.getElementById("collapseAXB_ev_count");
 
                         // output_intermediary_new(output_pointer, SX_output_pointer, XO_output_pointer, x_counter_pointer, dd_div, x_array, geneA, geneB, geneA_lookup_address, geneB_lookup_address, debug_string)
                         output_intermediary_new(output_AXB, output_AX_AXB, output_XB_AXB, AXB_ev_count, AXB_dd_div, connection_type_list.x_is_intermediary, geneA, geneB, geneA_is_subj_address, geneB_is_obj_address, debug_string)
                     }
 
                     // 'x_is_downstream'
-                    if (connection_type_list.x_is_downstream.length > 0) {
-                        var debug_string = 'output_ABx'
-                        // console.log(debug_string)
+                    // Check if any output already
+                    if (!AB_st_output) {
+                        if (connection_type_list.x_is_downstream.length > 0) {
+                            var debug_string = 'output_ABx 1'
 
-                        // Set names
-                        let Aname_ABtoX = document.getElementById("A_ABtoX")
-                        Aname_ABtoX.textContent = geneA
-                        let Bname_ABtoX = document.getElementById("B_ABtoX")
-                        Bname_ABtoX.textContent = geneB;
+                            // Set names
+                            Aname_ABtoX.textContent = geneA;
+                            Bname_ABtoX.textContent = geneB;
 
-                        AB_im_output = true
+                            AB_st_output = true;
 
-                        // Get pointers
-                        // Full box
-                        var output_ABx = $('#expl_x_is_downstream')[0];
-                        // x dropdown
-                        var ABtox_dd_div = $("#ABtoX_dropdown")[0];
-                        ABtox_dd_div.innerHTML = null;
-                        var output_AX_ABtoX = $("#AX_output_ABtoX")[0];
-                        output_AX_ABtoX.innerHTML = null;
-                        var output_XB_ABtoX = $("#XB_output_ABtoX")[0];
-                        output_XB_ABtoX.innerHTML = null;
-                        // evidence count pointer
-                        var ABx_ev_count = document.getElementById("collapse_st_X_count");
-
-                        // output_intermediary_new(output_pointer, SX_output_pointer, XO_output_pointer, x_counter_pointer, dd_div, x_array, geneA, geneB, geneA_lookup_address, geneB_lookup_address, debug_string)
-                        output_intermediary_new(output_ABx, output_AX_ABtoX, output_XB_ABtoX, ABx_ev_count, ABtox_dd_div, connection_type_list.x_is_downstream, geneA, geneB, geneA_is_subj_address, geneB_is_subj_address, debug_string)
+                            // output_intermediary_new(output_pointer, SX_output_pointer, XO_output_pointer, x_counter_pointer, dd_div, x_array, geneA, geneB, geneA_lookup_address, geneB_lookup_address, debug_string)
+                            output_intermediary_new(output_ABx, output_AX_ABtoX, output_XB_ABtoX, ABx_ev_count, ABtox_dd_div, connection_type_list.x_is_downstream, geneA, geneB, geneA_is_subj_address, geneB_is_subj_address, debug_string)
+                        }
                     }
 
                     // 'x_is_upstream':
-                    if (connection_type_list.x_is_upstream.length > 0) {
-                        var debug_string = 'output_xAB'
-                        // console.log(debug_string)
+                    // Check if any output already
+                    if (!AB_sr_output) {
+                        if (connection_type_list.x_is_upstream.length > 0) {
+                            var debug_string = 'output_xAB 1'
 
-                        // Flag found so we don't make same call again for B->A
-                        AB_im_output = true
+                            // Flag found so we don't make same call again for B->A
+                            AB_sr_output = true;
 
-                        // Set names
-                        let Aname_A_XtoAB = document.getElementById("A_XtoAB")
-                        Aname_A_XtoAB.textContent = geneA
-                        let Bname_XtoAB = document.getElementById("B_XtoAB")
-                        Bname_XtoAB.textContent = geneB;
+                            // Set names
+                            Aname_A_XtoAB.textContent = geneA;
+                            Bname_XtoAB.textContent = geneB;
 
-                        // Get pointers
-                        // Full box
-                        var output_xAB = $('#expl_x_is_upstream')[0];
-                        // x dropdown
-                        var XtoAB_dd_div = $("#XtoAB_dropdown")[0];
-                        XtoAB_dd_div.innerHTML = null;
-                        var output_AX_XtoAB = $("#AX_output_XtoAB")[0];
-                        output_AX_XtoAB.innerHTML = null;
-                        var output_XB_XtoAB = $("#XB_output_XtoAB")[0];
-                        output_XB_XtoAB.innerHTML = null;
-                        // evidence count pointer
-                        var xAB_ev_count = document.getElementById("collapse_sr_X_count");
-
-                        // output_intermediary_new(output_pointer, SX_output_pointer, XO_output_pointer, x_counter_pointer, dd_div, x_array, geneA, geneB, geneA_lookup_address, geneB_lookup_address, debug_string)
-                        output_intermediary_new(output_xAB, output_AX_XtoAB, output_XB_XtoAB, xAB_ev_count, XtoAB_dd_div, connection_type_list.x_is_upstream, geneA, geneB, geneA_is_obj_address, geneB_is_obj_address, debug_string)
+                            // output_intermediary_new(output_pointer, SX_output_pointer, XO_output_pointer, x_counter_pointer, dd_div, x_array, geneA, geneB, geneA_lookup_address, geneB_lookup_address, debug_string)
+                            output_intermediary_new(output_xAB, output_AX_XtoAB, output_XB_XtoAB, xAB_ev_count, XtoAB_dd_div, connection_type_list.x_is_upstream, geneA, geneB, geneA_is_obj_address, geneB_is_obj_address, debug_string)
+                        }
                     }
                 },
                 error: function() {
                     var output_AB = $("#expl_A_to_B")[0];
                     output_AB.innerHTML = null;
-                    let AB_output_element_err = document.createElement("div")
-                    AB_output_element_err.textContent = "Could not query " + geneA_is_subj_expl_address
-                    output_AB.appendChild(AB_output_element_err)
+                    let AB_output_element_err = document.createElement("div");
+                    AB_output_element_err.textContent = "Could not query " + geneA_is_subj_expl_address;
+                    output_AB.appendChild(AB_output_element_err);
                 }
 
             })
@@ -424,23 +490,12 @@ $(function(){
                     // if connection undirected and not already printed
                     if (!AcB_d_output) {
                         if (connection_type_list.undirected.length > 0) {
-                            var debug_string = 'output_AcB'
-                            // console.log(debug_string)
-
-                            AcB_d_output = true
+                            AcB_d_output = true;
+                            var debug_string = 'output_AcB 2'
 
                             // Set names COMPLEX
-                            let Aname_complex = document.getElementById("A_complex")
-                            Aname_complex.textContent = geneA
-                            let Bname_complex = document.getElementById("B_complex");
+                            Aname_complex.textContent = geneA;
                             Bname_complex.textContent = geneB;
-
-                            // Reference and initialize the output pointers
-                            var output_AcB = $("#expl_A_complex_B")[0];
-                            var output_ABcomplex = $("#AB_output_complex")[0];
-                            output_ABcomplex.innerHTML = null;
-                            // Get reference to the text badge so we can output evidence count
-                            var AcB_ev_count = document.getElementById("collapseAcB_ev_count");
 
                             // output_directs(output_pointer, source_output_pointer, ev_counter_pointer, type_hash_array, subj, obj, debug_string)
                             output_directs(output_AcB, output_ABcomplex, AcB_ev_count, connection_type_list.undirected, geneA, geneB, debug_string)
@@ -450,21 +505,10 @@ $(function(){
                     // if connection directed
                     if (connection_type_list.directed.length > 0) {
                         var debug_string = 'output_BA'
-                        // console.log(debug_string)
 
                         // Set names DIRECTed
-                        let Aname_BtoA = document.getElementById("A_BtoA")
                         Aname_BtoA.textContent = geneA;
-                        let Bname_BtoA = document.getElementById("B_BtoA")
                         Bname_BtoA.textContent = geneB;
-
-                        var output_BA = $("#expl_B_to_A")[0];
-                        var output_BA_BA = $("#BA_output_BA")[0];
-                        output_BA_BA.innerHTML = null;
-
-                        // Evidence counter
-                        collapseAB_ev_count
-                        var BA_ev_count = document.getElementById("collapseBA_ev_count");
 
                         // output_directs(output_pointer, source_output_pointer, ev_counter_pointer, type_hash_array, subj, obj, debug_string)
                         output_directs(output_BA, output_BA_BA, BA_ev_count, connection_type_list.directed, geneB, geneA, debug_string)
@@ -473,88 +517,42 @@ $(function(){
                     // 'x_is_intermediary'; B->X->A
                     if (connection_type_list.x_is_intermediary.length > 0) {
                         var debug_string = 'output_BXA'
-                        // console.log(debug_string)
 
                         // Set names
-                        let Aname_BXA = document.getElementById("A_BXA")
-                        Aname_BXA.textContent = geneA
-                        let Bname_BXA = document.getElementById("B_BXA")
+                        Aname_BXA.textContent = geneA;
                         Bname_BXA.textContent = geneB;
-
-                        // Get pointers
-                        // Full box
-                        var output_BXA = $("#expl_B_to_X_to_A")[0];
-                        // x dropdown
-                        var BXA_dd_div = $("#BXA_dropdown")[0];
-                        BXA_dd_div.innerHTML = null;
-                        var output_BX_BXA = $("#BX_output_BXA")[0];
-                        output_BX_BXA.innerHTML = null;
-                        var output_XB_BXA = $("#XA_output_BXA")[0];
-                        output_XB_BXA.innerHTML = null;
-
-                        // Get pointer to evidence counter
-                        var BXA_ev_count = document.getElementById("collapseBXA_ev_count");
 
                         // output_intermediary_new(output_pointer, SX_output_pointer, XO_output_pointer, x_counter_pointer, dd_div, x_array, geneA, geneB, geneA_lookup_address, geneB_lookup_address, debug_string)
                         output_intermediary_new(output_BXA, output_BX_BXA, output_XB_BXA, BXA_ev_count, BXA_dd_div, connection_type_list.x_is_intermediary, geneB, geneA, geneB_is_subj_address, geneA_is_obj_address, debug_string)
                     }
 
-                    // Check if any output already is up for xAB or ABx
-                    if (!AB_im_output) {
-
+                    // Check if any output already
+                    if (!AB_st_output) {
                         // 'x_is_downstream'
                         if (connection_type_list.x_is_downstream.length > 0) {
-                            var debug_string = 'output_BAx'
-                            // console.log(debug_string)
+                            AB_st_output = true;
+                            var debug_string = 'output_BAx 2'
 
                             // Set names
-                            let Aname_ABtoX = document.getElementById("A_ABtoX")
-                            Aname_ABtoX.textContent = geneA
-                            let Bname_ABtoX = document.getElementById("B_ABtoX")
+                            Aname_ABtoX.textContent = geneA;
                             Bname_ABtoX.textContent = geneB;
-
-                            // Get pointers
-                            // Full box
-                            var output_ABx = $('#expl_x_is_downstream')[0];
-                            // x dropdown
-                            var ABtox_dd_div = $("#ABtoX_dropdown")[0];
-                            ABtox_dd_div.innerHTML = null;
-                            var output_AX_ABtoX = $("#AX_output_ABtoX")[0];
-                            output_AX_ABtoX.innerHTML = null;
-                            var output_XB_ABtoX = $("#XB_output_ABtoX")[0];
-                            output_XB_ABtoX.innerHTML = null;
-
-                            // evidence count pointer
-                            var ABx_ev_count = document.getElementById("collapse_st_X_count");
 
                             // output_intermediary_new(output_pointer, SX_output_pointer, XO_output_pointer, x_counter_pointer, dd_div, x_array, geneA, geneB, geneA_lookup_address, geneB_lookup_address, debug_string)
                             output_intermediary_new(output_ABx, output_AX_ABtoX, output_XB_ABtoX, ABx_ev_count, ABtox_dd_div, connection_type_list.x_is_downstream, geneA, geneB, geneA_is_subj_address, geneB_is_subj_address, debug_string)
                         }
+                    }
 
+                    // Check if any output already
+                    if (!AB_sr_output) {
                         // 'x_is_upstream':
                         if (connection_type_list.x_is_upstream.length > 0) {
-                            var debug_string = 'output_xBA'
-                            // console.log(debug_string)
+                            AB_sr_output = true;
+
+                            var debug_string = 'output_xBA 2'
 
                             // Set names
-                            let Aname_A_XtoAB = document.getElementById("A_XtoAB")
-                            Aname_A_XtoAB.textContent = geneA
-                            let Bname_XtoAB = document.getElementById("B_XtoAB")
+                            Aname_A_XtoAB.textContent = geneA;
                             Bname_XtoAB.textContent = geneB;
-
-                            // Get pointers
-                            // Full box
-                            var output_xAB = $('#expl_x_is_upstream')[0];
-                            // x dropdown
-                            var XtoAB_dd_div = $("#XtoAB_dropdown")[0];
-                            XtoAB_dd_div.innerHTML = null;
-                            var output_AX_XtoAB = $("#AX_output_XtoAB")[0];
-                            output_AX_XtoAB.innerHTML = null;
-                            var output_XB_XtoAB = $("#XB_output_XtoAB")[0];
-                            output_XB_XtoAB.innerHTML = null;
-
-                            // evidence count pointer
-                            var xAB_ev_count = document.getElementById("collapse_sr_X_count");
 
                             // output_intermediary_new(output_pointer, SX_output_pointer, XO_output_pointer, x_counter_pointer, dd_div, x_array, geneA, geneB, geneA_lookup_address, geneB_lookup_address, debug_string)
                             output_intermediary_new(output_xAB, output_AX_XtoAB, output_XB_XtoAB, xAB_ev_count, XtoAB_dd_div, connection_type_list.x_is_upstream, geneA, geneB, geneA_is_obj_address, geneB_is_obj_address, debug_string)
@@ -605,48 +603,55 @@ $(function(){
             // A single field or an array of fields to sort by.
             sortField: {
                 field: "item",
-                direction: "asc" 
+                direction: "asc"
             },
 
             // dropdownParent: "body",
 
             // Updates the current selection of first gene
             onChange: function(value) {
+                if (!value.length) return;
+
+                // Disable and clear second dropdown
+                select_second_gene.clear();
+                select_second_gene.clearOptions();
+                select_second_gene.disable();
+
                 geneB = "B"
                 geneA = value
 
-                select_second_gene.disable();
-                select_second_gene.clearOptions();
+                // Reset output and names
+                resetNamesOutput();
 
                 // Refer to the div (or other object) where the output text should be
                 let output_text = $("#my_outputA")[0];
 
                 // Add an empty innerHTML object (otherwise it keeps appending to current HTML object)
                 output_text.innerHTML = null;
-                
+
                 // build an element (here: "thingy") in the innerHTML that includes the selected value.
                 let thingy = document.createElement("span");
 
-                // Get the text from the selected item dropdown 
+                // Get the text from the selected item dropdown
                 thingy.textContent = "Gene A: " + value
 
                 // Append the element to the div object
                 output_text.appendChild(thingy)
-                
+
                 // Set second query address example:
                 // https://s3.amazonaws.com/depmap-public/prior_filtered_neighbor_lookup/neighbors_to_BRCA1.json
                 // https://s3.amazonaws.com/depmap-public/neighbor_lookup/neighbors_to_A1BG.json
-                s3_prefix = "https://s3.amazonaws.com/depmap-public/neighbor_lookup/neighbors_to_";
+                // s3_prefix = "https://s3.amazonaws.com/depmap-public/neighbor_lookup/neighbors_to_"; // OLD
+                s3_prefix = "https://s3.amazonaws.com/depmap-public/neighbor_lookup_2018sep19/neighbors_to_"; // NEW
                 var second_dd_address = s3_prefix + value + ".json"
 
                 // Query for next dropdown
-                if (!value.length) return;
                 select_second_gene.load(function(callback) {
                     var second_json = $.ajax({
                         url: second_dd_address,
                         success: function(results) {
                             // var second_items = results.map(function(x) { return {second_item: x}; })
-                            var second_items = results.map(function(x) { return {second_item: x[0] + ": " + parseFloat(x[1]).toFixed(3).toString(), name: x[0], correlation: Math.abs(x[1]) }; })
+                            var second_items = results.map(function(x) { return {second_item: x[0] + ": correlation " + parseFloat(x[1]).toFixed(3).toString(), name: x[0], correlation: Math.abs(x[1]) }; })
                             select_second_gene.enable();
                             callback(second_items);
                         },
@@ -681,9 +686,9 @@ $(function(){
 
         let hash_query = {"hashes": hash_list}
         let stmts_promise = getStatementByHash(hash_query)
-        
+
         stmts_promise.then(function(stmt_response){
-            console.log("stmt_response");
+            console.log('stmt_response');
             console.log(stmt_response);
 
             // statements is a dict keyed by hashes: {hash: stmt_json, ...}
@@ -696,7 +701,7 @@ $(function(){
                 subj_obj_string = " statements with " + subj + " as subject and " + obj + " as object.";
             }
 
-            // We could send an array of statement jsons, but then we 
+            // We could send an array of statement jsons, but then we
             // would have to keep track of which uuid is with which statement
             // because I don't know if they're being returned in the same order
             // as they were sent in. Instead, let's loop over statements and
@@ -711,8 +716,23 @@ $(function(){
             for (let hash of hash_list) {
                 stmt_json = stmts[hash]
                 uuid = stmt_json.id
-                stmt_uuid_array.push(uuid)
-                uuid_stmtjson_dict[uuid] = stmt_json // store stmt_json in global uuid_stmtjson dict
+                uuid_twin = uuid;
+
+                // Check if entry for this uuid does NOT exists
+                if (uuid_stmtjson_dict[uuid] === undefined) {
+                    uuid_stmtjson_dict[uuid] = stmt_json // store stmt_json in global uuid_stmtjson dict
+                // If it already exists, that means there is another button with this UUID and we need to tweak the uuid entry
+                } else {
+                    // Run a while loop here and keep try adding uuids until the entry doen't exist like this:
+                    i=1;
+                    uuid_twin = uuid + "_duplicate_json_" + i; // Added string
+                    while (uuid_stmtjson_dict[uuid_twin] !== undefined) {
+                        i++;
+                        uuid_twin = uuid + "_duplicate_json_" + i;
+                    }
+                    uuid_stmtjson_dict[uuid_twin] = stmt_json;
+                }
+                stmt_uuid_array.push(uuid_twin)
                 stmt_hash_array.push(hash)
                 json_stmt_array = {"statements": [stmt_json]}
                 eng_res_array.push(getEnglishByJson(json_stmt_array))
@@ -741,7 +761,7 @@ $(function(){
                 }
 
                 uuid_hash_type_plain_array = [];
-                
+
                 // Loop to add uuid, hash, type, plain english
                 for (let k = 0; k < number_of_statements; k++) {
                     // Get uuid, english output
@@ -840,6 +860,7 @@ $(function(){
                         // BIOPAX: link to stmt_json.evidence[k].source_id; link text: "See on pathway commons"
                         // BEL: (should have PMID?)
                         // SIGNOR: https://signor.uniroma2.it/relation_result.php?id=P15056#BRAF_MAP2K1 <-- how do we link if we don't know the id (P15056)?
+                        // Check if json with SIGNOR provides alternative ids to search with...
 
                         // if PMID
                         if (_pmid) {
@@ -849,10 +870,9 @@ $(function(){
                             // HERE GRAB META DATA AND PUT INTO THE POPUP
                             let pubmed_promise = getPubMedMETAxmlByPMID(_pmid);
                             pubmed_promise.then(function(responseXML) {
-                                // console.log('responseXML')
-                                // console.log(responseXML)
                                 docsum_xml = responseXML.getElementsByTagName('DocSum')[0]
                                 pmid_meta_dict = pmidXML2dict(docsum_xml)
+                                console.log('pmid_meta_dict')
                                 console.log(pmid_meta_dict)
 
                                 authorlist = pmid_meta_dict.AuthorList
@@ -872,14 +892,17 @@ $(function(){
                         // no PMID
                         } else {
                             // if BIOPAX
-                            if (_api == "biopax" & _id) {
-                                output_element_link.href = _id;
+                            if (_api == "biopax" & _id.length > 0) {
+                                // Example for biopax source without pmid: A: A1BG B: IL18 pick X: FOXA1 in shared regulator
+                                // output_element_link.href = _id;  // LINK BROKEN
+                                output_element_link.href = "http://apps.pathwaycommons.org/search?type=Pathway&q=" + subj + "%2C%20" + obj; // Links to search for one of the two ids
                                 output_element_link.title = "Meta Data for PathwayCommons source"
                                 output_element_link.textContent = "[See on pathway commons] " + source_api_text;
                             } else if (_api == "signor") {
-                                output_element_link.href = "https://signor.uniroma2.it/";
+                                // Example of SIGNOR source without PMID:
+                                output_element_link.href = "https://signor.uniroma2.it/"; // Don't know URL for searching by signor ID
                                 output_element_link.title = "Meta Data for SIGNOR source"
-                                output_element_link.textContent = "[See on SIGNOR (don't know search query address for gene names)] " + source_api_text;
+                                output_element_link.textContent = "[Search this on SIGNOR: " + _id + "] " + source_api_text;
                             // if this shows up there is a source you haven't handled yet.
                             } else {
                                 console.log('Unhandled source; Check statement json')
@@ -898,6 +921,7 @@ $(function(){
 
     // Use this function for A-X-B (same for all four) the query needs to be over two json lookups: SUBJ_is_subj and OBJ_is_obj
     function output_intermediary_new(output_pointer, SX_output_pointer, XO_output_pointer, x_counter_pointer, dd_div, x_array, geneA, geneB, geneA_lookup_address, geneB_lookup_address, debug_string){
+        // console.log(('Called output_intermediary_new from ' + debug_string))
         let dropdown_div = dd_div;
         var dd_id = dropdown_div.id;
         var rand_id = Number(Math.random()*10**17).toString(); // Just create a random id that you can refer to the dropdown
@@ -916,8 +940,8 @@ $(function(){
         dropdown_ctrl_group.appendChild(dropdown_select)
         dropdown_div.appendChild(dropdown_ctrl_group)
         // output_pointer.appendChild(dropdown_div)
-        
-        var items = x_array.map(function(x) { return { item: x }; })
+
+        var items = x_array.map(function(x) { return { x_value: x[0], item: x[0] + ": rank " + parseFloat(x[1]).toFixed(3).toString(), rank: x[1] }; })
 
         // Update the count of X in the badge
         x_counter_pointer.textContent = "X: " + x_array.length.toString()
@@ -928,19 +952,19 @@ $(function(){
             // X found, set to black
             x_counter_pointer.style = "background-color:#000000;"
         }
-        
+
 
         // Create dropdown with all X
         $select_intermediate = $("#"+rand_id).selectize({
             options: items,
-            valueField: "item",
+            valueField: "x_value",
             labelField: "item",
             searchField: ["item"],
 
             // A single field or an array of fields to sort by.
             sortField: {
-                field: "item",
-                direction: "asc" 
+                field: "rank",
+                direction: "desc"
             },
 
             // On select/change: Query A-X and B-X and output the english statements and their evidence
