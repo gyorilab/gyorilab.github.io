@@ -22,9 +22,11 @@
 				</header>
 				<nav id="nav">
 					<ul>
-						<li><a href="#projects" class="active">Projects</a></li>
 						<li><a href="#apps">Applications</a></li>
+						<li><a href="#services">Services</a></li>
+						<li><a href="#projects" class="active">Projects</a></li>
 						<li><a href="#pubs">Publications</a></li>
+						<li><a href="#media">Media</a></li>
 						<li><a href="#team">Team</a></li>
 					</ul>
 				</nav>
@@ -43,7 +45,89 @@
 				<!-- Main -->
 					<div id="main">
 
-						<!-- One -->
+
+						<!-- Two -->
+							<section id="apps">
+								<div class="container">
+									<h3>Applications</h3>
+									<div class="features">
+										<article>
+											<a href="http://github.com/sorgerlab/indra" class="image"><img src="images/indra_pipeline.gif" alt="INDRA" /></a>
+											<div class="inner">
+												<h4>INDRA</h4>
+												<p>INDRA (Integrated Network and Dynamical Reasoning Assembler) is an automated model assembly system, originally developed for molecular systems biology and currently being generalized to other domains. INDRA draws on natural language processing systems and structured databases to collect mechanistic and causal assertions, represents them in a standardized form (INDRA Statements), and assembles them into various modeling formalisms including causal graphs and dynamical models. INDRA also provides knowledge assembly procedures that operate on INDRA Statements and correct certain errors, find and resolve redundancies, infer missing information, filter to a scope of interest and assess belief.
+                                                <br/><b><a href="https://github.com/sorgerlab/indra">Code</a></b>
+                                                &nbsp; <b><a href="https://indra.readthedocs.io">Docs</a></b></p>
+											</div>
+										</article>
+										<article>
+											<a href="http://54.84.114.146/" class="image"><img src="images/bob_sbgn.png" alt="" /></a>
+											<div class="inner">
+												<h4>Bob with Bioagents dialogue system</h4>
+												<p>Bob with Bioagents is a machine partner you can chat with about molecular biology to solve problems together. Assume you want to explain an experimental observation, or get some ideas for a new hypothesis. You can talk with the machine agent in English language to discuss topics such as drugs, transcription factors, miRNs, and their targets, and various mechanisms described in the literature and databases. You can also build up a model of a mechanism by describing it during the dialogue, and then ask questions about the properties of the model being discussed to see if it behaves as expected.
+                                                <br/><a href="http://54.84.114.146/"><b>Access</b><a>
+                                                </p>
+											</div>
+										</article>
+										<article>
+											<a href="http://pathwaymap.indra.bio/" class="image"><img src="images/indra_ipm.png" alt="" /></a>
+											<div class="inner">
+												<h4>INDRA-IPM (Interactive Pathway Map)</h4>
+												<p>The INDRA-IPM allows you to build pathway maps using natural language descriptions. You simply describe the set of mechanisms to include in English, and then click a button to assemble and lay out a pathway map. The pathway can be exported into various formats like SBML, SBGN, Kappa and others.
+                                                <br/><a href="http://pathwaymap.indra.bio"><b>Access</b><a>
+                                                </p>
+											</div>
+										</article>
+										<article>
+											<a href="http://depmap.indra.bio" class="image"><img src="images/depmap.png" alt="" /></a>
+											<div class="inner">
+												<h4>INDRA DepMap Explainer</h4>
+												<p>The DepMap Explainer builds on INDRA assembly of literature extractions by natural language processing systems
+													to construct mechanistic explanations to correlations between genes involved in CRISPR screens of cancer cell
+													lines found at <a href="http://depmap.org">depmap.org</a>.
+                                                    <br/><a href="http://depmap.indra.bio"><b>Access</b><a></p>
+											</div>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/indrabot.png" alt="" /></a>
+											<div class="inner">
+												<h4>IndraBot</h4>
+												<p>IndraBot is a chat bot which is deployed on the #indra_bot channel
+													of the Harvard Program in Therapeutic Science Slack workspace. It can answer natural language questions
+												  about mechanisms such as "what phosphorylates ELK1?" or "does RHOA interact with MYL12B?" by querying
+													a database of INDRA assemblies of mechanisms extracted from the literature and pathway databases.
+													If you are interested in deploying the IndraBot in your Slack workspace, contact our team.
+												   </p>
+											</div>
+										</article>
+									</div>
+								</div>
+							</section>
+						
+
+						<!-- Three -->
+							<section id="servs">
+								<div class="container">
+									<h3>Services</h3>
+										<div class="features">
+											<article>
+												<div class="inner">
+														<a href="http://pathwaymap.indra.bio/api/"><h4>INDRA REST API</h4></a>
+														<p>A rest API providing access to many of INDRA's key services, including reading, preassembly and model assembly.</p>
+												</div>
+										  </article>
+											<article>
+												<div class="inner">
+														<a href="https://github.com/indralab/indra_db/tree/master/rest_api"><h4>INDRA Database REST API</h4></a>
+														<p>A rest API providing access to the accumlated mechanistic knowledge derived from reading all the available medical literature with multiple reading systems, integrating existing pathway databases, and assembled using INDRA.</p>
+												</div>
+										  </article>
+										</div>		
+								</div>
+							</section>
+
+
+<!-- One -->
 							<section id="projects">
 								<!--
 								<div class="image main" data-position="center">
@@ -77,78 +161,6 @@
 										<br/ >
 										<i>Funded by the Defense Advanced Research Projects Agency under award W911NF-18-1-0014.</i>
 									</p>
-								</div>
-							</section>
-
-						<!-- Two -->
-							<section id="apps">
-								<div class="container">
-									<h3>Applications</h3>
-									<div class="features">
-										<article>
-											<a href="http://github.com/sorgerlab/indra" class="image"><img src="images/indra_pipeline.gif" alt="INDRA" /></a>
-											<div class="inner">
-												<h4>INDRA</h4>
-												<p>INDRA (Integrated Network and Dynamical Reasoning Assembler) is an automated model assembly system, originally developed for molecular systems biology and currently being generalized to other domains. INDRA draws on natural language processing systems and structured databases to collect mechanistic and causal assertions, represents them in a standardized form (INDRA Statements), and assembles them into various modeling formalisms including causal graphs and dynamical models. INDRA also provides knowledge assembly procedures that operate on INDRA Statements and correct certain errors, find and resolve redundancies, infer missing information, filter to a scope of interest and assess belief.</p>
-											</div>
-										</article>
-										<article>
-											<a href="http://54.84.114.146/" class="image"><img src="images/bob_sbgn.png" alt="" /></a>
-											<div class="inner">
-												<h4>Bob with Bioagents dialogue system</h4>
-												<p>Bob with Bioagents is a machine partner you can chat with about molecular biology to solve problems together. Assume you want to explain an experimental observation, or get some ideas for a new hypothesis. You can talk with the machine agent in English language to discuss topics such as drugs, transcription factors, miRNs, and their targets, and various mechanisms described in the literature and databases. You can also build up a model of a mechanism by describing it during the dialogue, and then ask questions about the properties of the model being discussed to see if it behaves as expected.</p>
-											</div>
-										</article>
-										<article>
-											<a href="http://pathwaymap.indra.bio/" class="image"><img src="images/indra_ipm.png" alt="" /></a>
-											<div class="inner">
-												<h4>INDRA-IPM (Interactive Pathway Map)</h4>
-												<p>The INDRA-IPM allows you to build pathway maps using natural language descriptions. You simply describe the set of mechanisms to include in English, and then click a button to assemble and lay out a pathway map. The pathway can be exported into various formats like SBML, SBGN, Kappa and others.</p>
-											</div>
-										</article>
-										<article>
-											<a href="http://depmap.indra.bio" class="image"><img src="images/depmap.png" alt="" /></a>
-											<div class="inner">
-												<h4>INDRA DepMap Explainer</h4>
-												<p>The DepMap Explainer builds on INDRA assembly of literature extractions by natural language processing systems
-													to construct mechanistic explanations to correlations between genes involved in CRISPR screens of cancer cell
-													lines found at <a href="http://depmap.org">depmap.org</a>.</p>
-											</div>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/indrabot.png" alt="" /></a>
-											<div class="inner">
-												<h4>IndraBot</h4>
-												<p>IndraBot is a chat bot which is deployed on the #indra_bot channel
-													of the Harvard Program in Therapeutic Science Slack workspace. It can answer natural language questions
-												  about mechanisms such as "what phosphorylates ELK1?" or "does RHOA interact with MYL12B?" by querying
-													a database of INDRA assemblies of mechanisms extracted from the literature and pathway databases.
-													If you are interested in deploying the IndraBot in your Slack workspace, contact our team.
-												   </p>
-											</div>
-										</article>
-									</div>
-								</div>
-							</section>
-
-						<!-- Three -->
-							<section id="servs">
-								<div class="container">
-									<h3>Services</h3>
-										<div class="features">
-											<article>
-												<div class="inner">
-														<a href="http://pathwaymap.indra.bio/api/"><h4>INDRA REST API</h4></a>
-														<p>A rest API providing access to many of INDRA's key services, including reading, assembly, and preassembly.</p>
-												</div>
-										  </article>
-											<article>
-												<div class="inner">
-														<a href="https://github.com/sorgerlab/indra/tree/master/db_rest_api"><h4>INDRA Database REST API</h4></a>
-														<p>A rest API providing access to the accumlated mechanistic knowledge derived from reading all the available medical literature, and processed using INDRA's preassembly tools.</p>
-												</div>
-										  </article>
-										</div>		
 								</div>
 							</section>
 
