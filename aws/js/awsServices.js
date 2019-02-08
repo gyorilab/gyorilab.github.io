@@ -14,6 +14,15 @@ https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CognitoIdentity.html
 https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CognitoIdentityServiceProvider.html
 https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CognitoIdentityCredentials.html
 
+In order to work and test this file there are three alternatives:
+1.  Create an untracked directory (e.g. 'temp') in the same path as the html 
+    you want to test it with, then load like 'src="temp/myJSfile.js"'
+2.  Run 'python -m http.server 5000 --bind 127.0.0.1' and load through 
+    'src="http://localhost/myJSfile.js"'
+    see https://docs.python.org/3/library/http.server.html for more info
+3.  Upload it to AWS S3 and load it through:
+    'src="https://s3.amazonaws.com/my-bucket/path/myJSfile.js"'
+
 */
 
 // Check where script is loaded
@@ -437,6 +446,10 @@ function addUserToIdentityCredentials(userIdToken) {
   identityId = AWS.config.credentials.identityId;
 }
 
+function grabJSON (url, callback) {
+  return $.ajax({url: url, dataType: "json"});
+};
+
 // Can be used when something is public on S3
 function getPublicJson(bucket, key) {
   console.log('function getPublicJson(bucket, key)')
@@ -447,6 +460,15 @@ function getPublicJson(bucket, key) {
   url = base_url +  pathString.replace(/\/\//g, '/'); // Avoid double slashes
   // console.log('getting json from ' + url);
   return grabJSON(url);
+}
+
+function sortByCol(arr, colIndex){
+  arr.sort(sortFunction)
+  function sortFunction(a, b) {
+    a = a[colIndex]
+    b = b[colIndex]
+    return (a === b) ? 0 : (a < b) ? -1 : 1
+  }
 }
 
 // When and object needs credentials to be read from S3
