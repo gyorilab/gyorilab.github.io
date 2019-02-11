@@ -41,7 +41,7 @@ var IDTOKEN_COOKIE_NAME = '';
 // Check where we are
 $(document).ready(function() {
   if (ENV == 'indra') {
-      console.log('case INDRA')
+      console.log('case INDRALAB')
       APP_CLIENT_ID = APP_CLIENT_ID_INDRALAB_POOL;
       IDENTITY_POOL_ID = IDENTITY_POOL_ID_INDRALAB;
       AUTH_ENDPOINT_BASE_URL = AUTH_ENDPOINT_BASE_URL_INDRALAB;
@@ -88,7 +88,7 @@ var USER_SIGNED_IN = false;
 var APP_CLIENT_ID_EMMAA_POOL = '3ej6b95mbsu28e5nkcb6oa8fnp';
 var APP_CLIENT_ID_INDRALAB_POOL = '45rmn7pdon4q4g2o1nr7m33rpv';
 var AUTH_ENDPOINT_BASE_URL_EMMAA = 'https://emmaa.auth.us-east-1.amazoncognito.com/oauth2/authorize?';
-var AUTH_ENDPOINT_BASE_URL_INDRALAB = 'https://indra.auth.us-east-1.amazoncognito.com/oauth2/authorize?';
+var AUTH_ENDPOINT_BASE_URL_INDRALAB = 'https://auth.indra.bio/login?';
 var identityId = '' // 
 var USER_POOL_ID_EMMAA = 'us-east-1_5sb1590b6'; // User pool ID; User info lives here
 var USER_POOL_ID_INDRALAB = 'us-east-1_ZROvpv8jf'; // User pool ID; User info lives here
