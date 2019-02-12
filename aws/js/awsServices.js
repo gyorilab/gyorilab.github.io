@@ -38,10 +38,10 @@ var STATE_COOKIE_NAME = '';
 var ACCESSTOKEN_COOKIE_NAME = '';
 var IDTOKEN_COOKIE_NAME = '';
 
-// Check where we are
-$(document).ready(function() {
+function setEnv(env) {
+  if (env) ENV = env;
   if (ENV == 'indra') {
-      console.log('case INDRA')
+      console.log('case INDRALAB')
       APP_CLIENT_ID = APP_CLIENT_ID_INDRALAB_POOL;
       IDENTITY_POOL_ID = IDENTITY_POOL_ID_INDRALAB;
       AUTH_ENDPOINT_BASE_URL = AUTH_ENDPOINT_BASE_URL_INDRALAB;
@@ -63,9 +63,13 @@ $(document).ready(function() {
       ACCESSTOKEN_COOKIE_NAME = EMMAA_ACCESSTOKEN_COOKIE_NAME;
       IDTOKEN_COOKIE_NAME = EMMAA_IDTOKEN_COOKIE_NAME;
   } else {
-    console.log('default case')
+    console.log('No environment set')
   }
-});
+}
+
+$(document).ready(function(){
+  setEnv() // Temporary usage to not break pages dependent on previous implemenations
+})
 
 // CONSTANTS AND IDs
 var EMMMAA_BUCKET = 'emmaa';
@@ -83,12 +87,13 @@ var ID_TOKEN_STRING = ''; // id token string
 var ID_TOKEN = {}; // id token
 var REFRESH_TOKEN = ''; // refresh token (only provided using username/password or App client secret authorization)
 var USER_SIGNED_IN = false;
+var SIGN_IN_ALERT_MESSAGE = 'Must be signed in to see page. Click OK to proceed to login.'
 
 // cognito parameters
 var APP_CLIENT_ID_EMMAA_POOL = '3ej6b95mbsu28e5nkcb6oa8fnp';
 var APP_CLIENT_ID_INDRALAB_POOL = '45rmn7pdon4q4g2o1nr7m33rpv';
 var AUTH_ENDPOINT_BASE_URL_EMMAA = 'https://emmaa.auth.us-east-1.amazoncognito.com/oauth2/authorize?';
-var AUTH_ENDPOINT_BASE_URL_INDRALAB = 'https://indra.auth.us-east-1.amazoncognito.com/oauth2/authorize?';
+var AUTH_ENDPOINT_BASE_URL_INDRALAB = 'https://auth.indra.bio/login?';
 var identityId = '' // 
 var USER_POOL_ID_EMMAA = 'us-east-1_5sb1590b6'; // User pool ID; User info lives here
 var USER_POOL_ID_INDRALAB = 'us-east-1_ZROvpv8jf'; // User pool ID; User info lives here
@@ -364,34 +369,46 @@ function responseResolve(err, data) {
 
 // CHECK SIGN IN
 // this function should check if there is a session active and get the user pool tokens for that session
-function checkSignIn() {
-  console.log('function checkSignIn()')
+function checkSignIn(forceLogin) {
+  console.log('function checkSignIn(forceLogin)')
   STATE_VALUE = _readCookie(STATE_COOKIE_NAME);
-  let return_url = window.location.href;
+  var return_url = window.location.href;
   console.log('Return url: ' + return_url);
   let dict_split = getDictFromUrl(return_url);
 
   // No dict returned. Probably at first visit to page
-  if (!dict_split) return;
-  // console.log('returned url_dict')
-  // console.log(dict_split[0])
-
-  // State value does not match, do not proceed; Simple first layer security
-  if (dict_split && dict_split[0]['state'] != STATE_VALUE) {
+  if (!dict_split) {
+    if (forceLogin) {
+      alert(SIGN_IN_ALERT_MESSAGE)
+      getTokenFromAuthEndpoint(return_url)
+    }
+    else return;
+  } else if (dict_split && dict_split[0]['state'] != STATE_VALUE) {
     console.log('State Value does not match');
-    let outputNode = document.getElementById(NOTIFY_TAG_ID)
-    notifyUser(outputNode, 'State Value does not match');
-    return;
-  };
-
-  // Check if token flow
-  if (dict_split && dict_split[0]['access_token']) {
+    if (forceLogin) {
+      alert(SIGN_IN_ALERT_MESSAGE)
+      getTokenFromAuthEndpoint(return_url)
+    }
+    else {
+      let outputNode = document.getElementById(NOTIFY_TAG_ID)
+      notifyUser(outputNode, 'State Value does not match');
+      return;
+    }
+  } else if (dict_split && dict_split[0]['access_token']) {
+    // Token flow
     console.log('token from authorization-endpoint')
     verifyUser(dict_split[0]['access_token'], dict_split[0]['id_token'])
+    return true;
   } else {
-    console.log('No pattern match...')
-    let outputNode = document.getElementById(NOTIFY_TAG_ID)
-    notifyUser(document.getElementById('status-notify'), 'Unable to retreive session/session expired. Please log in again.');
+    console.log('Could not verify authentication flow...')
+    if (forceLogin) {
+      alert(SIGN_IN_ALERT_MESSAGE)
+      getTokenFromAuthEndpoint(return_url)
+    } else {
+      let outputNode = document.getElementById(NOTIFY_TAG_ID)
+      notifyUser(document.getElementById('status-notify'), 'Unable to retreive session/session expired. Please log in again.');
+      return;
+    }
   }
 }
 
