@@ -3298,7 +3298,7 @@ input, select, textarea {
 	/* Three columns side by side */
 	.column {
 	    float: left;
-	    width: 33%;
+	    width: 25%;
 	    margin-bottom: 16px;
 	    padding: 0 px;
 	}
