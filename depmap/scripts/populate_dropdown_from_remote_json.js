@@ -9,9 +9,8 @@ $(function(){
     var first_select_list = "https://s3.amazonaws.com/depmap-public/explainable_ids_1534216288.json";
     var select_first_gene, $select_first_gene
     var select_second_gene, $select_second_gene
-    var indra_server_addr = "https://lsm6zea7gg.execute-api.us-east-1.amazonaws.com/production/statements/from_hashes";
-    // var indra_server_addr = "https://l3zhe2uu9c.execute-api.us-east-1.amazonaws.com/dev/statements/from_hashes";
-    var indra_english_asmb = "http://api.indra.bio:8000/assemblers/english";
+    var indra_server_addr = "https://db.indra.bio/statements/from_hashes";
+    var indra_english_asmb = "https://api.indra.bio/assemblers/english";
     var pubmed_fetch = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi";
 
     // set globally accessible variables
