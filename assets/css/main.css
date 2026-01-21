@@ -3332,3 +3332,7 @@ input, select, textarea {
 	.title {
 	    color: grey;
 	}
+
+	.card .icon.fa-github {
+	    margin-left: 0.5em;
+	}
