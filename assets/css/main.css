@@ -1,4 +1,4 @@
-@import url("font-awesome.min.css");
+/* Font Awesome 6 loaded via CDN in HTML head */
 @import url("https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Source+Code+Pro:400");
 
 /*
@@ -3333,6 +3333,8 @@ input, select, textarea {
 	    color: grey;
 	}
 
-	.card .icon.fa-github {
+	.card .icon.fab.fa-github,
+	.card .icon.fas.fa-graduation-cap,
+	.card .icon.fab.fa-orcid {
 	    margin-left: 0.5em;
 	}
