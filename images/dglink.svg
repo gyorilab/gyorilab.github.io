@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 371.05 383.88">
+  <!-- Generator: Adobe Illustrator 30.6.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 109)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #2a2c34;
+      }
+
+      .st0, .st1, .st2 {
+        font-family: HelveticaNeue, 'Helvetica Neue';
+        isolation: isolate;
+      }
+
+      .st0, .st2 {
+        font-size: 10px;
+      }
+
+      .st3 {
+        fill: #8dcc93;
+        stroke: #5db665;
+      }
+
+      .st3, .st4, .st5, .st6 {
+        stroke-width: 2px;
+      }
+
+      .st7 {
+        fill: #a5abb6;
+      }
+
+      .st1 {
+        font-size: 8px;
+      }
+
+      .st4 {
+        fill: #4c8eda;
+        stroke: #2870c2;
+      }
+
+      .st5 {
+        fill: #ecb5c9;
+        stroke: #da7298;
+      }
+
+      .st2 {
+        fill: #fff;
+      }
+
+      .st6 {
+        fill: #f26869;
+        stroke: #f26869;
+      }
+    </style>
+  </defs>
+  <g>
+    <g>
+      <path class="st7" d="M180.89,317.99l.66-9.97-1-.07-.66,9.97,1,.07ZM185.94,242.05l.66-9.97,2.99.2-3.03-7.22-3.96,6.75,2.99.2-.66,9.97,1,.07Z"/>
+      <text class="st1" pointer-events="none" transform="translate(184.22 305.66) rotate(-86.2)"><tspan x="0" y="0">biolink:related_to</tspan></text>
+    </g>
+    <g>
+      <path class="st7" d="M306.79,149.74l-9.41,3.38.34.94,9.41-3.38-.34-.94ZM235.14,175.45l-9.41,3.38-1.01-2.82-5.41,5.66,7.77.93-1.01-2.82,9.41-3.38-.34-.94Z"/>
+      <text class="st1" pointer-events="none" transform="translate(238.71 177.88) rotate(-19.74)"><tspan x="0" y="0">biolink:related_to</tspan></text>
+    </g>
+    <g>
+      <path class="st7" d="M211.45,65.38l-2.12,11.63.98.18,2.12-11.63-.98-.18ZM197.44,142.06l-2.12,11.63-2.95-.54,2.19,7.51,4.7-6.26-2.95-.54,2.12-11.63-.98-.18Z"/>
+      <text class="st1" pointer-events="none" transform="translate(201.34 140.19) rotate(-79.65)"><tspan x="0" y="0">biolink:related_to</tspan></text>
+    </g>
+    <g>
+      <path class="st7" d="M119.83,83.11l6.29,10.08.85-.53-6.29-10.08-.85.53ZM161.11,149.3l6.29,10.08-2.55,1.59,6.67,4.09-.73-7.79-2.55,1.59-6.29-10.08-.85.53Z"/>
+      <text class="st1" pointer-events="none" transform="translate(125.34 96.67) rotate(58.05)"><tspan x="0" y="0">biolink:related_to</tspan></text>
+    </g>
+    <g>
+      <path class="st7" d="M64.52,156.35l11.39,3.38.28-.96-11.39-3.38-.28.96ZM139.31,178.51l11.39,3.38-.85,2.88,7.71-1.37-5.72-5.34-.85,2.88-11.39-3.38-.28.96Z"/>
+      <text class="st1" pointer-events="none" transform="translate(77.63 162.84) rotate(16.51)"><tspan x="0" y="0">biolink:related_to</tspan></text>
+    </g>
+    <g>
+      <path class="st7" d="M73.43,249.19l10.25-4.98-.44-.9-10.25,4.98.44.9ZM143.15,215.32l10.25-4.98,1.31,2.7,4.77-6.21-7.83-.09,1.31,2.7-10.25,4.98.44.9Z"/>
+      <text class="st1" pointer-events="none" transform="translate(87.05 245.35) rotate(-25.91)"><tspan x="0" y="0">biolink:related_to</tspan></text>
+    </g>
+  </g>
+  <g>
+    <g>
+      <circle class="st6" cx="178.24" cy="350.38" r="32.5"/>
+      <text class="st2" pointer-events="none" transform="translate(146.75 355.38)"><tspan x="0" y="0">pdc:e2a348…</tspan></text>
+    </g>
+    <g>
+      <circle class="st5" cx="188.72" cy="192.63" r="32.5"/>
+      <text class="st0" pointer-events="none" transform="translate(175.57 197.63)"><tspan x="0" y="0">EGFR</tspan></text>
+    </g>
+    <g>
+      <circle class="st6" cx="337.55" cy="139.24" r="32.5"/>
+      <text class="st2" pointer-events="none" transform="translate(305.77 144.24)"><tspan x="0" y="0">pdc:b91a15…</tspan></text>
+    </g>
+    <g>
+      <circle class="st3" cx="217.78" cy="33.5" r="32.5"/>
+      <text class="st0" pointer-events="none" transform="translate(185.18 38.5)"><tspan x="0" y="0">ncigdc:1656…</tspan></text>
+    </g>
+    <g>
+      <circle class="st3" cx="103.06" cy="55.27" r="32.5"/>
+      <text class="st0" pointer-events="none" transform="translate(70.65 60.27)"><tspan x="0" y="0">ncigdc:7e8e…</tspan></text>
+    </g>
+    <g>
+      <circle class="st4" cx="33.5" cy="146.63" r="32.5"/>
+      <text class="st2" pointer-events="none" transform="translate(1.18 151.63)"><tspan x="0" y="0">ncigc:phs00…</tspan></text>
+    </g>
+    <g>
+      <circle class="st4" cx="43.98" cy="262.94" r="32.5"/>
+      <text class="st2" pointer-events="none" transform="translate(12.95 267.94)"><tspan x="0" y="0">ncigc:10.17…</tspan></text>
+    </g>
+  </g>
+</svg>

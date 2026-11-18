@@ -59,6 +59,7 @@
             <li><a href="#positions">Open Positions</a></li>
             <li><a href="#pubs">Publications</a></li>
             <li><a href="#media">Media</a></li>
+            <li><a href="#videos">Videos</a></li>
         </ul>
 
     </nav>
@@ -96,16 +97,20 @@
         <section id="intro">
             <div class="container">
                 <h3>Introduction</h3>
-                Our group is developing systems that can accelerate scientific
-                discovery in biomedicine using a combination of text mining,
-                knowledge assembly, mathematical modeling and causal analysis.
-                We are pursuing approaches that use artificial intelligence to
-                increasingly automate the interpretation of scientific literature
-                and large experimental datasets, and also to enable
-                sophisticated human-machine interaction and collaboration.
-                Applications of these tools range from drug discovery for cancer
-                and other diseases to modeling complex processes at the interface
-                of physical and social systems.
+                Our lab develops computational methods and open-source software
+                that combine large-scale experimental and observational data
+                with scalable representations of scientific knowledge and
+                mechanisms. We work in several interconnected areas: large-scale
+                knowledge assembly and reasoning for data interpretation,
+                semantic technologies for data integration in biomedicine and
+                other fields, and machine-assisted modeling of complex systems.
+                Our methods draw on natural language processing, machine
+                learning, knowledge representation, mathematical modeling and
+                human-machine interaction. Applications include drug discovery,
+                vaccine development, pandemic preparedness, rare disease
+                research, cause of death determination and environmental health,
+                as well as decision support for complex socio-economic and
+                operational scenarios.
             </div>
         </section>
         <section id="apps">
@@ -126,7 +131,39 @@
                                 <br/>
                                 <a href="https://github.com/gyorilab/indra">Code</a>
                                 &nbsp; <a href="https://indra.readthedocs.io">Docs</a> &nbsp;
-                                <a href="https://api.indra.bio">REST API</a></p>
+                                <a href="https://api.indra.bio">REST API</a>
+                                <br/>
+                                Applications:
+                                <a href="https://panacea.indra.bio/">Pain and inflammation</a> &nbsp;
+                                <a href="https://covid19.indra.bio/">COVID-19</a> &nbsp;
+                                <a href="https://labsyspharm.github.io/dubportal/">Deubiquitinating enzymes</a> &nbsp;
+                                <a href="https://darkkinome.org/">Dark kinome</a></p>
+                        </div>
+                    </article>
+                    <article>
+                        <a href="https://db.indra.bio/" class="image"><img src="images/indra_db.png" alt=""/></a>
+                        <div class="inner">
+                            <h4>INDRA Database</h4>
+                            <p>The INDRA Database makes knowledge assembled by INDRA at scale available as a service.
+                                It aggregates knowledge extracted by multiple machine-reading systems from all available
+                                abstracts and open-access full text articles, and combines this with mechanisms from
+                                pathway databases. Queries allow searching for genes, chemicals, biological processes
+                                and
+                                other concepts of interest, and returns a ranked list of relevant interactions.
+                                The INDRA Network Search finds mechanistic paths between entities of interest
+                                in the assembled knowledge, and we used it to build the DepMap explainer for
+                                correlations between genes in CRISPR screens of cancer cell lines.
+                                <br/>
+                                <a href="https://db.indra.bio">Website</a>&nbsp;
+                                <a href="https://github.com/gyorilab/indra_db/blob/master/indra_db_service/README.md">
+                                    REST API</a>
+                                &nbsp;
+                                <a href="https://github.com/gyorilab/indra_db">Code</a>
+                                &nbsp;
+                                <a href="https://network.indra.bio">Network search</a>
+                                &nbsp;
+                                <a href="http://depmap.indra.bio">DepMap explainer</a>
+                            </p>
                         </div>
                     </article>
                     <article>
@@ -147,21 +184,81 @@
                         </div>
                     </article>
                     <article>
-                        <a href="https://db.indra.bio/" class="image"><img src="images/indra_db.png" alt=""/></a>
+                        <a href="https://github.com/gyorilab/indra_world" class="image"><img src="images/wm_causemos.png" alt=""/></a>
                         <div class="inner">
-                            <h4>INDRA Database</h4>
-                            <p>The INDRA Database makes knowledge assembled by INDRA at scale available as a service.
-                                It aggregates knowledge extracted by multiple machine-reading systems from all available
-                                abstracts and open-access full text articles, and combines this with mechanisms from
-                                pathway databases. Queries allow searching for genes, chemicals, biological processes
-                                and
-                                other concepts of interest, and returns a ranked list of relevant interactions.
+                            <h4>INDRA World</h4>
+                            <p>
+                                In the context of the DARPA World Modelers program, we
+                                have generalized INDRA to modeling complex causal mechanisms
+                                governing processes such as agricultural production, food security and migration.
+                                We were also part of the <a href="https://web.archive.org/web/20230329202650/https://www.dsmt-e.com/">DSMT-E project</a>,
+                                a large collaboration funded by DARPA and the Gates Foundation to develop
+                                AI-driven decision support tools for Ethiopia.
                                 <br/>
-                                <a href="https://db.indra.bio">Website</a>&nbsp;
-                                <a href="https://github.com/gyorilab/indra_db/blob/master/indra_db_service/README.md">
-                                    REST API</a>
+                                <a href="https://github.com/gyorilab/indra_world">Code</a>
                                 &nbsp;
-                                <a href="https://github.com/gyorilab/indra_db">Code</a>
+                                <a href="https://worldmodelers.com/">World Modelers technical website</a>
+                            </p>
+                        </div>
+                    </article>
+                    <article>
+                        <a href="https://biopragmatics.github.io" class="image">
+                            <img src="images/biopragmatics.png" alt="Biopragmatics tools"/>
+                        </a>
+                        <div class="inner">
+                            <h4>Biopragmatics stack</h4>
+                            <p>
+                                We developed the Biopragmatics stack, a collection of
+                                interlinked software packages that provide
+                                infrastructure for working with biomedical ontologies
+                                and their entries. They include the Bioregistry (a
+                                meta-registry of biomedical nomenclatures), Bioversions
+                                (a service for tracking versions of biomedical
+                                resources), Biomappings (community curated equivalences
+                                across biomedical ontologies), and SeMRA (automated
+                                assembly and reasoning over semantic mappings at scale).
+                                <br/>
+                                <a href="https://biopragmatics.github.io/">Website</a>
+                                <a href="https://github.com/biopragmatics/">Code</a>
+                            </p>
+                        </div>
+                    </article>
+                    <article>
+                        <a href="http://grounding.indra.bio" class="image"><img src="images/gilda.png" alt=""/></a>
+                        <div class="inner">
+                            <h4>Gilda</h4>
+                            <p>
+                                Gilda is a Python package and REST service that grounds (i.e., finds appropriate
+                                identifiers in namespaces for) named entities in biomedical text. It also uses a set of
+                                machine-learned disambiguation models
+                                to choose between different senses of ambiguous synonyms, including models
+                                for acronyms and abbreviations built with our Adeft package. It can be
+                                integrated into applications as a Python package or through the REST service.
+                                <br/>
+                                <a href="http://grounding.indra.bio/">Website and REST API</a>
+                                &nbsp;
+                                <a href="https://github.com/gyorilab/gilda">Code</a>
+                                &nbsp;
+                                <a href="https://github.com/gyorilab/adeft">Adeft code</a>
+                            </p>
+                        </div>
+                    </article>
+                    <article>
+                        <a href="https://dglink.indra.bio/crdc/" class="image"><img src="images/dglink.svg" alt="DGLink"/></a>
+                        <div class="inner">
+                            <h4>DGLink</h4>
+                            <p>DGLink automatically builds knowledge graphs from the
+                                metadata and data files of biomedical data repositories,
+                                linking data within and across data portals to accelerate
+                                data discovery and knowledge-driven interpretation. It
+                                ingests both standard formats (such as VCF and DICOM) and
+                                arbitrary tabular files, and grounds the entities it finds
+                                to ontologies. Users can query the knowledge graph directly
+                                or in natural language through an LLM agent connected via
+                                an MCP server.
+                                <br/>
+                                <a href="https://dglink.indra.bio/crdc/">CRDC demo</a> &nbsp;
+                                <a href="https://github.com/gyorilab/dglink">Code</a>
                             </p>
                         </div>
                     </article>
@@ -170,14 +267,30 @@
                                                                                alt="MIRA"/></a>
                         <div class="inner">
                             <h4>MIRA</h4>
-                            <p>MIRA is a meta-modeling framework that enables rapid prototyping
-                                of models across scientific domains including epidemiology, ecology,
-                                and systems biology. It uses ontology-grounded templates to represent
-                                model structure, allowing the same model to be exported to multiple
-                                simulation formats and enabling automated model comparison and assembly.
+                            <p>MIRA is a framework for machine-assisted modeling of complex
+                                systems in domains including epidemiology, ecology and systems
+                                biology. Models in MIRA are represented as ontology-grounded
+                                meta-model templates, from which we generate executable models
+                                in multiple formalisms and simulation formats. With MIRA, we can
+                                automatically stratify, compare and compose models, and extract
+                                models from publications.
                                 <br/>
                                 <a href="https://github.com/gyorilab/mira">Code</a>
                                 &nbsp; <a href="https://miramodel.readthedocs.io/en/latest/">Docs</a>
+                            </p>
+                        </div>
+                    </article>
+                    <article>
+                        <a href="https://epimodels.io" class="image"><img src="images/epimodels.png" alt="EpiModels"/></a>
+                        <div class="inner">
+                            <h4>EpiModels</h4>
+                            <p>EpiModels is a growing database of published epidemiology
+                                models that we extract from publications as symbolic equations
+                                using MIRA and represent as ontology-grounded meta-model
+                                templates. Models can be searched by title, author, PubMed ID or
+                                grounded concept.
+                                <br/>
+                                <a href="https://epimodels.io">Website</a>
                             </p>
                         </div>
                     </article>
@@ -200,144 +313,22 @@
                         </div>
                     </article>
                     <article>
-                        <a href="http://pathwaymap.indra.bio/" class="image"><img src="images/indra_ipm.png"
-                                                                                  alt=""/></a>
+                        <a href="https://github.com/codaproject/coda" class="image"><img src="images/coda.png" alt="CODA"/></a>
                         <div class="inner">
-                            <h4>INDRA-IPM (Interactive Pathway Map)</h4>
-                            <p>The INDRA-IPM allows you to build pathway maps using natural language descriptions. You
-                                simply describe the set of mechanisms to include in English, and then click a button to
-                                assemble and lay out a pathway map. The pathway can be exported into various formats
-                                like SBML, SBGN, Kappa and others.
+                            <h4>CODA: Cause of Death Assistant</h4>
+                            <p>CODA is an AI-assisted application for cause of death
+                                determination in regions where most deaths are not
+                                medically certified and verbal autopsy interviews are the
+                                main source of evidence. We develop the integrated
+                                application, with live voice transcription and translation,
+                                adaptive question selection and document recognition, all
+                                running offline on edge devices using current AI models.
+                                We ground interview content to ICD-10 and ICD-11 terms and
+                                link it to a knowledge graph of cause-of-death
+                                relationships for reproducible, uncertainty-aware
+                                inference.
                                 <br/>
-                                <a href="http://pathwaymap.indra.bio">Website</a>
-                                &nbsp;
-                                <a href="https://github.com/sorgerlab/indra_pathway_map">Code</a>
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="images/clare.png" alt=""/></a>
-                        <div class="inner">
-                            <h4>CLARE machine assistant</h4>
-                            <p>CLARE is a machine assistant that can be deployed as
-                                a Slack application in a workspace and engage in
-                                human-machine dialogue in channels and private messages.
-                                It can answer
-                                questions about mechanisms such as
-                                "what phosphorylates ELK1?" or "does RHOA interact
-                                with MYL12B?" and connect this information to other
-                                resources, while also allowing to build and discuss
-                                models of mechanisms. Please contact us if you'd like
-                                to deploy CLARE on your Slack workspace.
-                                <br/>
-                                <a href="https://www.youtube.com/watch?v=hZRY6G2cwEU">Demo video</a>
-                        </div>
-                    </article>
-                    <article>
-                        <a href="http://dsmt-e.com" class="image"><img src="images/wm_causemos.png" alt=""/></a>
-                        <div class="inner">
-                            <h4>INDRA World</h4>
-                            <p>
-                                In the context of the DARPA World Modelers program, we
-                                have generalized INDRA to modeling complex causal mechanisms
-                                governing processes such as agricultural production, food security and migration.
-                                We were also part of the <a href="https://web.archive.org/web/20230329202650/https://www.dsmt-e.com/">DSMT-E project</a>,
-                                a large collaboration funded by DARPA and the Gates Foundation to develop
-                                AI-driven decision support tools for Ethiopia.
-                                <br/>
-                                <a href="https://github.com/gyorilab/indra_world">Code</a>
-                                &nbsp;
-                                <a href="https://worldmodelers.com/">World Modelers technical website</a>
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <a href="http://depmap.indra.bio" class="image"><img src="images/depmap.png" alt=""/></a>
-                        <div class="inner">
-                            <h4>Network search and DepMap explainer</h4>
-                            <p>The INDRA Network search builds on the INDRA assembly of literature extractions
-                                and pathway databases to find mechanistic paths between entities of interest.
-                                It allows searching for a variety of patterns (paths between, common up/downstreams,
-                                etc.)
-                                and tuning multiple search parameters to define constraints and context.
-                                The DepMap explainer is a specific instance of network search aimed at
-                                constructing explanations for correlations between genes involved in CRISPR screens of
-                                cancer cell lines found at <a href="https://depmap.org">depmap.org</a>.
-                                <br/>
-                                <a href="http://depmap.indra.bio">DepMap explainer</a>
-                                &nbsp;
-                                <a href="https://network.indra.bio">Network search</a>
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <a href="https://panacea.indra.bio" class="image"><img src="images/ion_channel_kb_network.png"
-                                                                               alt=""/></a>
-                        <div class="inner">
-                            <h4>Application to studying pain and inflammation</h4>
-                            <p>In the context of the DARPA Panacea program, the team
-                                has worked on understanding the regulation of pain and
-                                inflammation with the goal of finding new therapeutics
-                                using INDRA.
-                                <br/>
-                                <a href="https://panacea.indra.bio/">Website</a>
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <a href="http://grounding.indra.bio" class="image"><img src="images/gilda.png" alt=""/></a>
-                        <div class="inner">
-                            <h4>Gilda</h4>
-                            <p>
-                                Gilda is a Python package and REST service that grounds (i.e., finds appropriate
-                                identifiers in namespaces for) named entities in biomedical text. It also uses a set of
-                                machine-learned disambiguation models
-                                to choose between different senses of ambiguous synonyms. It can be integrated into
-                                applications as a Python package or through the REST service.
-                                <br/>
-                                <a href="http://grounding.indra.bio/">Website and REST API</a>
-                                &nbsp;
-                                <a href="https://github.com/gyorilab/gilda">Code</a>
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <a href="https://github.com/gyorilab/adeft" class="image"><img src="images/adeft.png"
-                                                                                       alt=""/></a>
-                        <div class="inner">
-                            <h4>Adeft</h4>
-                            <p>
-                                Adeft (Acromine based Disambiguation of Entities From Text context)
-                                builds machine-learning models to disambiguate acronyms and other abbreviations of
-                                biological terms in the scientific literature. A growing number of
-                                pretrained disambiguation models are publicly available through
-                                the Python package.
-                                <br/>
-                                <a href="https://github.com/gyorilab/adeft">Code</a>
-                            </p>
-                        </div>
-                    </article>
-                    <article>
-                        <a href="https://biopragmatics.github.io" class="image">
-                            <img src="images/biopragmatics.png" alt="Biopragmatics tools"/>
-                        </a>
-                        <div class="inner">
-                            <h4>Biopragmatics stack</h4>
-                            <p>
-                                We developed the Biopragmatics stack, a collection of
-                                interlinked software packages that provide
-                                infrastructure for working with biomedical ontologies
-                                and their entries. They include the Bioregistry (a
-                                meta-registry of biomedical nomenclatures), Bioversions
-                                (a service for tracking versions of biomedical
-                                resources), Biomappings (community curated equivalences
-                                across biomedical ontologies), Biolookup (a service for
-                                retrieving metadata about biomedical entities), and
-                                PyOBO (a software package to facilitate processing
-                                biomedical ontologies in a unified fashion).
-                                <br/>
-                                <a href="https://biopragmatics.github.io/">Website</a>
-                                <a href="https://github.com/biopragmatics/">Code</a>
+                                <a href="https://github.com/codaproject/coda">Code</a>
                             </p>
                         </div>
                     </article>
@@ -361,28 +352,33 @@
             <div class="container">
                 <h3>Projects and Funding</h3>
                 <h4>Current</h4>
-                <div id="askem">
+                <div id="bdc">
                     <p>
-                        <strong>Automating Scientific Knowledge Extraction and Modeling (ASKEM)</strong>
-                        The <a href="https://www.darpa.mil/news-events/2021-12-06" target="_blank">DARPA ASKEM program</a> aims to develop technologies to significantly speed up how experts create, maintain and analyze models
-			of complex processes such as viral pandemics and space weather. We are developing the <a href="https://github.com/gyorilab/mira">MIRA system</a>
-			which is a framework for representing systems using ontology-grounded meta-model templates,
-			and generating various model implementations and exchange formats from these templates.
-			It also implements algorithms for assembling and querying domain knowledge graphs in support of modeling.
-<br/>
+                        <strong>Semantic Knowledge Integration and Context-Aware Data Interpretation in BioData Catalyst</strong>
+                        As part of the <a href="https://biodatacatalyst.nhlbi.nih.gov/" target="_blank">NHLBI BioData Catalyst</a> consortium, we are developing automated semantic integration of the research data in BioData Catalyst using <a href="https://github.com/gyorilab/dglink">DGLink</a>, and connecting these data to INDRA-assembled knowledge for context-aware data interpretation and discovery.
+                        <br/>
                         <i>
-                            Funded by the Defense Advanced Research Projects Agency
-                            under award HR00112220036. (2022-)
+                            Funded by the National Heart, Lung, and Blood Institute as part of the BioData Catalyst consortium. (2026-)
                         </i>
                     </p>
                 </div>
-                <div id="bdf">
+                <div id="rapid">
                     <p>
-                        <strong>Biomedical Data Frabric (BDF)</strong>
-                        The <a href="https://arpa-h.gov/research-and-funding/programs/arpa-h-bdf-toolbox" target="_blank">ARPA-H BDF program</a> develops technologies for large-scale automated data integration to make it possible to extract more value out of data. Our lab is developing new approaches to semantic integration, automated data annotation, knowledge extraction and assembly, automated hypothesis generation, and human-machine dialogue.
+                        <strong>Knowledge Graph Infrastructure for the Rare Disease Data Commons</strong>
+                        As part of the <a href="https://arpa-h.gov/research-and-funding/programs/rapid" target="_blank">ARPA-H RAPID program</a>, we are working with Sage Bionetworks and other teams on a Rare Disease Data Commons. We are developing the commons' knowledge graph, which semantically integrates data across modalities and links it to prior knowledge about genes, variants, phenotypes and diseases.
                         <br/>
                         <i>
-                            Funded by ARPA-H via DARPA award HR00112220036. (2023-)
+                            Funded by the Advanced Research Projects Agency for Health (ARPA-H). (2026-)
+                        </i>
+                    </p>
+                </div>
+                <div id="darpaverse">
+                    <p>
+                        <strong>DARPAVERSE CHORUS: Collaborative Human-Orchestrated Rapid Understandable Specification</strong>
+                        In the DARPA DARPAVERSE program, together with <a href="https://uncharted.software/" target="_blank">Uncharted Software</a>, we are developing methods to formalize human intent, flexibly mapping intent expressed in natural language or through a user interface into a formal representation. From this representation, we select, compose and orchestrate suitable simulation models from a model library.
+                        <br/>
+                        <i>
+                            Funded by the Defense Advanced Research Projects Agency. (2026-)
                         </i>
                     </p>
                 </div>
@@ -390,7 +386,7 @@
                     <p>
                         <strong>Rapid Assessment of Platform Technologies to Expedite Response (RAPTER)</strong>
                         The <a href="https://discover.lanl.gov/news/1027-vaccine-development/" target="_blank">RAPTER program</a>
-                        aims to create a machine-learning tool to revolutionize the future of vaccine development, rapidly choosing a suitable vaccine platform for any viral and bacterial pathogen. Within RAPTER, we are developing text mining, knowledge assembly and knowledge graph technology to create an actionable repository of vaccine/pathogen knowledge from which models can be derived.
+                        aims to create a machine-learning tool to revolutionize the future of vaccine development, rapidly choosing a suitable vaccine platform for any viral and bacterial pathogen. Within RAPTER, we are developing a vaccine and pathogen knowledge base assembled from databases and the literature, together with methods to assess the compatibility of vaccine platforms with specific pathogens.
                         <br/>
                         <i>
                             Funded by the Defense Threat Reduction Agency. (2023-)
@@ -419,6 +415,31 @@
                     </p>
                 </div>
                 <h4>Past</h4>
+                <div id="askem">
+                    <p>
+                        <strong>Automating Scientific Knowledge Extraction and Modeling (ASKEM)</strong>
+                        The <a href="https://www.darpa.mil/news-events/2021-12-06" target="_blank">DARPA ASKEM program</a> aimed to develop technologies to significantly speed up how experts create, maintain and analyze models
+                        of complex processes such as viral pandemics and space weather. We developed the <a href="https://github.com/gyorilab/mira">MIRA system</a>,
+                        a framework for representing systems using ontology-grounded meta-model templates,
+                        and generating various model implementations and exchange formats from these templates.
+                        MIRA also implements algorithms for assembling and querying domain knowledge graphs in support of modeling.
+                        <br/>
+                        <i>
+                            Funded by the Defense Advanced Research Projects Agency
+                            under award HR00112220036. (2022-2026)
+                        </i>
+                    </p>
+                </div>
+                <div id="bdf">
+                    <p>
+                        <strong>Biomedical Data Fabric (BDF)</strong>
+                        The <a href="https://arpa-h.gov/research-and-funding/programs/arpa-h-bdf-toolbox" target="_blank">ARPA-H BDF program</a> developed technologies for large-scale automated data integration to make it possible to extract more value out of data. Our lab developed new approaches to semantic integration, automated data annotation, knowledge extraction and assembly, automated hypothesis generation, and human-machine dialogue.
+                        <br/>
+                        <i>
+                            Funded by ARPA-H via DARPA award HR00112220036. (2023-2026)
+                        </i>
+                    </p>
+                </div>
                 <div id="big-mechanism">
                     <p><strong>Big Mechanism</strong> The DARPA Big Mechanism
                         program set out to automate the reading, assembly and
@@ -649,17 +670,6 @@
                     </div>
                     <div class="column">
                         <div class="card">
-                            <img src="images/sachs.png" alt="Karen Sachs" style="width:100%">
-                            <div class="containerx">
-                                <strong>Karen Sachs, PhD</strong>
-                                <p class="title">Senior research scientist <a href="https://github.com/karensachs" class="icon fab fa-github" target="_blank"><span class="label">GitHub</span></a> <a href="https://scholar.google.com/citations?hl=en&user=lS0tvhoAAAAJ" class="icon fas fa-graduation-cap" target="_blank"><span class="label">Google Scholar</span></a> <a href="https://orcid.org/0000-0001-7693-4019" class="icon fab fa-orcid" target="_blank"><span class="label">ORCID</span></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="column">
-                        <div class="card">
                             <img src="images/gyongyi.png" alt="Gyongyi Szilagyi" style="width:100%">
                             <div class="containerx">
                                 <strong>Gyongyi Szilagyi</strong>
@@ -667,6 +677,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="column">
                         <div class="card">
                             <img src="images/marfatia.png" alt="Prasham Marfatia" style="width:100%">
@@ -690,12 +702,10 @@
                             <img src="images/lim.jpg" alt="Thomas Lim" style="width:100%">
                             <div class="containerx">
                                 <strong>Thomas Lim</strong>
-                                <p class="title">Scientific software developer <a href="https://github.com/thomaslim6793" class="icon fab fa-github" target="_blank"><span class="label">GitHub</span></a></p>
+                                <p class="title">PhD student <a href="https://github.com/thomaslim6793" class="icon fab fa-github" target="_blank"><span class="label">GitHub</span></a></p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="column">
                         <div class="card">
                             <img src="images/steppi.png" alt="Albert Steppi" style="width:100%">
@@ -705,12 +715,14 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="column">
                         <div class="card">
                             <img src="images/oscar.png" alt="Oscar Ji" style="width:100%">
                             <div class="containerx">
                                 <strong>Oscar Ji</strong>
-                                <p class="title">Co-op student <a href="https://github.com/kanghosaeyo" class="icon fab fa-github" target="_blank"><span class="label">GitHub</span></a> <a href="https://orcid.org/0009-0009-3402-8013" class="icon fab fa-orcid" target="_blank"><span class="label">ORCID</span></a></p>
+                                <p class="title">Undergraduate research assistant <a href="https://github.com/kanghosaeyo" class="icon fab fa-github" target="_blank"><span class="label">GitHub</span></a> <a href="https://orcid.org/0009-0009-3402-8013" class="icon fab fa-orcid" target="_blank"><span class="label">ORCID</span></a></p>
                             </div>
                         </div>
                     </div>
@@ -719,7 +731,7 @@
                             <img src="images/ashwin.jpg" alt="Ashwin Satish" style="width:100%">
                             <div class="containerx">
                                 <strong>Ashwin Satish</strong>
-                                <p class="title">Co-op student</p>
+                                <p class="title">Master's student</p>
                             </div>
                         </div>
                     </div>
@@ -732,8 +744,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="column">
                         <div class="card">
                             <img src="images/buchner.jpg" alt="Bradley Buchner" style="width:100%">
@@ -743,6 +753,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="column">
                         <div class="card">
                             <img src="images/hetvi.jpg" alt="Hetvi Khamar" style="width:100%">
@@ -770,9 +782,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="column">
+                        <div class="card">
+                            <img src="images/daniela.jpg" alt="Daniela Gonzalez" style="width:100%">
+                            <div class="containerx">
+                                <strong>Daniela Gonzalez</strong>
+                                <p class="title">Research scientist</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <h4>Past members at Northeastern (2023-)</h4>
                 <ul>
+                    <li>Karen Sachs, PhD - senior research scientist (2025-2026)</li>
                     <li>Eric Mockler - research scientist (2026)</li>
                     <li>Harshit Soni - research assistant (2026)</li>
                     <li>Sepideh Fouladzadeh - research assistant (2025)</li>
@@ -821,11 +843,14 @@
                 <dt>PhD Candidate</dt>
 		<dd>Applications have to go through the university application portals: Computer Science PhD program at
                 <a href="https://www.khoury.northeastern.edu/apply/phd-apply/">https://www.khoury.northeastern.edu/apply/phd-apply/</a> or the
-                Bioengineering PhD program at <a href="https://bioe.northeastern.edu/academics/graduate-studies/phd-bion/">https://bioe.northeastern.edu/academics/graduate-studies/phd-bion/</a>. However, the lab is not anticipating recruiting new PhD students currently.
+                Bioengineering PhD program at <a href="https://bioe.northeastern.edu/academics/graduate-studies/phd-bion/">https://bioe.northeastern.edu/academics/graduate-studies/phd-bion/</a>.
 		</dd>
 
-        <dt>Postdoctoral Fellow</dt>
-		<dd>For research-oriented postdoctoral roles, please reach out directly.</dd>
+        <dt>Postdoctoral Research Associate</dt>
+		<dd>We have an open postdoctoral position, see details and apply <a href="https://northeastern.wd1.myworkdayjobs.com/careers/job/Boston-MA-Main-Campus/Postdoctoral-Research-Associate_R142120">here</a>.</dd>
+
+        <dt>Associate Research Scientist</dt>
+		<dd>We have an open associate research scientist position, see details and apply <a href="https://northeastern.wd1.myworkdayjobs.com/careers/job/Boston-MA-Main-Campus/Associate-Research-Scientist_R143032">here</a>.</dd>
 
 		<dt>Biocurator Positions</dt>
                 <dd>We are looking for a part-time or volunteer biocurator for the <a href="https://bioregistry.io">Bioregistry</a> project. See details <a href="https://bit.ly/bioregistry-curator-2024">here</a>.</dd>
@@ -937,7 +962,7 @@
                     <span class="badge badge-published">Published</span>
                     Lo Surdo P, Iannuccelli M, <strong>Klas Karis</strong>, ... <strong>Benjamin M. Gyori</strong>, Livia Perfetto.
                     <a href="https://doi.org/10.1093/nar/gkaf1237">SIGNOR 4.0: the 2025 update with focus on phosphorylation data</a>
-                    <i>Nucleic Acid Research</i>, 2025
+                    <i>Nucleic Acids Research</i>, 2025
                 </p>
                 <p>
                 <span class="badge badge-preprint">Preprint</span>
@@ -1502,11 +1527,15 @@
                 <a href="https://hms.harvard.edu/news/panning-genetic-gold">Harvard Medicine News</a>
                 Our collaboration with the <a href="https://churchman.med.harvard.edu/">Churchman lab</a> to develop GeneWalk was covered
                 in the article <a href="https://hms.harvard.edu/news/panning-genetic-gold">"Panning for Genetic Gold"</a>.
+            </div>
+        </section>
 
+        <section id="videos">
+            <div class="container">
                 <h3>Videos</h3>
                 Several talks are available on YouTube via the playlist <a href="https://www.youtube.com/playlist?list=PLeFjXmEUA8mEpyC7-DJj8tz61EbhlAc7R" target="_blank">here</a>.
                 <br>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLeFjXmEUA8mEpyC7-DJj8tz61EbhlAc7R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe style="width:100%; aspect-ratio:16/9" src="https://www.youtube.com/embed/videoseries?list=PLeFjXmEUA8mEpyC7-DJj8tz61EbhlAc7R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </section>
 
